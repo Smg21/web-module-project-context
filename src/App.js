@@ -6,29 +6,27 @@ import data from './data';
 import Navigation from './components/Navigation';
 import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
+import { ProductProvider } from './contexts/ProductContext';
 
 function App() {
-	const [products] = useState(data);
-	const [cart, setCart] = useState([]);
+  const [products] = useState(data);
 
-	const addItem = item => {
-		// add the given item to the cart
-	};
+  return (
+    <ProductProvider>
+      <div className="App">
+        <Navigation /> {/* Make sure the cart prop is passed here */}
 
-	return (
-		<div className="App">
-			<Navigation cart={cart} />
+        {/* Routes */}
+        <Route exact path="/">
+          <Products />
+        </Route>
 
-			{/* Routes */}
-			<Route exact path="/">
-				<Products products={products} addItem={addItem} />
-			</Route>
-
-			<Route path="/cart">
-				<ShoppingCart cart={cart} />
-			</Route>
-		</div>
-	);
+        <Route path="/cart">
+          <ShoppingCart />
+        </Route>
+      </div>
+    </ProductProvider>
+  );
 }
 
 export default App;
