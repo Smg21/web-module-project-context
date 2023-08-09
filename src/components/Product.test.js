@@ -13,5 +13,5 @@ test('Product component renders without crashing', () => {
     }}
   />);
 
-  wrapper.debug();
+  // wrapper.debug();
 });
